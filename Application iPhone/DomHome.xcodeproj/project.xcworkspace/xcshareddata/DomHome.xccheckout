@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ACA82803-4008-4133-89A0-18916DD4727E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DomHome</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9267503C-8EAD-4366-AB6C-3FF92FBA5642</key>
+		<string>https://github.com/loiu92/DomHome.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Application iPhone/DomHome.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9267503C-8EAD-4366-AB6C-3FF92FBA5642</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/loiu92/DomHome.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9267503C-8EAD-4366-AB6C-3FF92FBA5642</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9267503C-8EAD-4366-AB6C-3FF92FBA5642</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DomHome</string>
+		</dict>
+	</array>
+</dict>
+</plist>
