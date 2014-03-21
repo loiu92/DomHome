@@ -20,8 +20,6 @@ int dataReponse=0;          // Set de la variable dataResponse à 0
 int relais1 = 13;           // Set de la variable relais1 à 13
 int relais2 = 12;           // Set de la variable relais2 à 7
 int relais3 = 11;           // Set de la variable relais3 à 8
-int relais = relais1 + relais2 + relais3;
-
 
 void setup() {
     Serial.begin(9600);
@@ -55,14 +53,14 @@ void EditReponse(int addrRelai){
   }
 }
 void sendData(){
-    int envoi = dataReponse;
     Serial.print(dataReponse);
-    Wire.write(envoi);
+    Wire.write(dataReponse);
 
 }
 
 int EtatTot(){
     return digitalRead(relais1)+digitalRead(relais2)*10+digitalRead(relais3)*100;
+
   
 }
 
@@ -106,12 +104,7 @@ void relais(int commande){
   case 100:
     EditReponse(100);
   break;
-  case 666:
-    digitalWrite(relais1, LOW);
-    digitalWrite(relais2, LOW);
-    digitalWrite(relais3, LOW);
-    EditResponse(relais);
-    break;
+ 
   }
   
 }
