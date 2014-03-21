@@ -1,0 +1,17 @@
+Relais 1
+<form action="index.py" method="POST">
+
+    <input type="radio" name="relais1" value="1">On<br>
+    <input type="radio" name="relais1" value="11">Off<br>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+Relais 2
+<form action="index.py" method="POST">
+
+    <input type="radio" name="relais2" value="2">On<br>
+    <input type="radio" name="relais2" value="22">Off<br>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+

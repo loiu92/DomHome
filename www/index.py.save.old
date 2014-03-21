@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+
+import smbus
+import time
+import sys
+import cgi
+import cgitb
+
+cgitb.enable()
+
+print "Content-type: text/html\n\n"
+
+form=cgi.FieldStorage()
+
+bus = smbus.SMBus(1)
+
+address = 0x12
+
+if "relais1" in form :
+    text=form["relais1"].value
+    bus.write_byte(address,int(text))
+    time.sleep(1)
+    reponse = bus.read_byte(address)
+    print "<h1>Etat des Relais :</h1>"
+    print "etat relais ="+str(reponse)
+    
+elif "relais2" in form :
+    text=form["relais2"].value
+    bus.write_byte(address,int(text))
+    time.sleep(1)
+    reponse = bus.read_byte(address)
+    print "<h1>Etat des Relais :</h1>"
+    print "etat relais ="+str(reponse)
