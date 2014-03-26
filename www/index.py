@@ -9,9 +9,10 @@ import os
 
 cgitb.enable()
 
+form = cgi.FieldStorage()
+
 print "Content-type: text/html\n\n"
 
-form=cgi.FieldStorage()
 
 print """
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -133,22 +134,17 @@ print """
 </body></html>
 
 """
-#<p>Relais1</p>
-#<form action="http://pi.loiu92.com/index.py" method="POST">
-#<input type="submit" name="relais1" class ="btn btn-sm btn-success" value="1"/>
-#<input type="submit" name="relais1" value="11"/>
-#</form>
+
 
 bus = smbus.SMBus(1)
 address = 0x12
 
 if os.environ['REQUEST_METHOD'] == 'POST':
-	text=form["relais"].value
-	bus.write_byte(address,int(text))
-	time.sleep(1)
-	reponse = bus.read_byte(address)
+#	mon_fichier = open("fichier.txt", "w")
+#        mon_fichier.write(str(form))
+#        mon_fichier.close()
+
+	bus.write_byte(address,int(form["relais"].value))
 	print "<h1>Etat des Relais :</h1>"
-	print "etat relais ="+str(reponse)
-
-
+	print "etat relais ="+str(bus.read_byte(address))
 

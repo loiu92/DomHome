@@ -30,38 +30,54 @@
 {
     //Ceci est la fonction qui s'exécute pour tes UISwitches
     //object est le nom de l'objet et activated est son nouvel état (activé ou non)
-    NSDictionary *dict;
+    
+    int val=0;
     if ([object isEqualToString:@"LampeBC"])
     {
         if (activated)
         {
-            dict = @{@"name": @"relais", @"value": @1}; //Allumé
+            val=1;
+            
         }
         else
         {
-            dict = @{@"name": @"relais", @"value": @11}; //Éteint
+            val=11;
+            
         }
     }
     else if ([object isEqualToString:@"LampeHalo"])
     {
         if (activated)
         {
-            dict = @{@"name": @"relais", @"value": @2}; //Allumé
+            val=2;
+            
         }
         else
         {
-            dict = @{@"name": @"relais", @"value": @22}; //Éteint
+            val=22;
+           
         }
     }
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict]; //On encapsule le dictionnaire dans les données
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://pi.loiu92.com/index.py"]];
+    
+    NSString * post = [[NSString alloc] initWithFormat:@"&relais=%d", val];
+    NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://pi.loiu92.com/index.py"]]];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:data];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    if (conn) NSLog(@"Connection Successful");
+        
+    
+    
+
     
 }
 
-    
 - (IBAction)lampeBC:(UISwitch *)sender
 {
     [self setObject:@"LampeBC" activated:sender.on];
@@ -97,18 +113,6 @@
     [self setObject:@"TV2" activated:sender.on];
 }
 
-//NSString * post = [[NSString alloc] initWithFormat:@"&myvariable=%d", 1];
-//NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-//NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
-//NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-//[request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://pi.loiu92.com"]]];
-//[request setHTTPMethod:@"POST"];
-//[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//[request setHTTPBody:postData];
-//NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-//if (conn) NSLog(@"Connection Successful");
 
 @end
 

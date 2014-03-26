@@ -1,0 +1,14 @@
+CACHE MANIFEST
+ 
+# v0.6
+ 
+CACHE:
+index.html
+Webapp.php
+
+FALLBACK:
+/ /offline.html
+ 
+NETWORK:
+
+test.php
