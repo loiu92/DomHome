@@ -148,3 +148,12 @@ if os.environ['REQUEST_METHOD'] == 'POST':
 	print "<h1>Etat des Relais :</h1>"
 	print "etat relais ="+str(bus.read_byte(address))
 
+bus.write_byte(address, 100)
+mon_fichier = open("etatrelais.txt", "w")
+mon_fichier.write(str(bus.read_byte(address)))
+mon_fichier.close()
+
+mon_fichier = open("etatrelais.txt", "r")
+etatrelais = mon_fichier.readlines()
+print etatrelais
+
