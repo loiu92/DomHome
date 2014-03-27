@@ -136,17 +136,19 @@ print """
 """
 
 
-bus = smbus.SMBus(1)
-address = 0x12
+bus = smbus.SMBus(1) #remplacer le 1 par 0 si vieux raspberry pi
+address = 0x12 #adresse i2c
 
 if os.environ['REQUEST_METHOD'] == 'POST':
-#	mon_fichier = open("fichier.txt", "w")
-#        mon_fichier.write(str(form))
-#        mon_fichier.close()
+#maintenance	mon_fichier = open("fichier.txt", "w")
+#maintenance        mon_fichier.write(str(form))
+#maintenance        mon_fichier.close()
 
 	bus.write_byte(address,int(form["relais"].value))
 	print "<h1>Etat des Relais :</h1>"
 	print "etat relais ="+str(bus.read_byte(address))
+
+#Ecriture Etat relais fichier et page
 
 bus.write_byte(address, 100)
 mon_fichier = open("etatrelais.txt", "w")
@@ -157,3 +159,21 @@ mon_fichier = open("etatrelais.txt", "r")
 etatrelais = mon_fichier.readlines()
 print etatrelais
 
+etat = str(bus.read_byte(address))
+print "relai 1:"
+print etat[0]
+print "relai 2:"
+print etat[1]
+print "relai 3:"
+print etat[2]
+
+
+
+print "<p></p>"
+print "------------------------------<p></p>"
+print "-", "Relai 1", "|", etat[0], "|<p></p>"
+print "----+---+----<p></p>"
+print "-", "Relai 2", "|", etat[1], "|<p></p>"
+print "----+---+----<p></p>"
+print "-", "Relai 3", "|", etat[2], "|<p></p>"
+print "------------------------------<p></p>"
