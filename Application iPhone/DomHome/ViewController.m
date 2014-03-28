@@ -56,9 +56,37 @@
         {
             val=22;
            
+     
+    }
+    }
+    else if ([object isEqualToString:@"TV"])
+    {
+        if (activated)
+        {
+            val=3;
+            
+        }
+        else
+        {
+            val=33;
+            
+            
         }
     }
-    
+    else if ([object isEqualToString:@"LampeChevet"])
+    {
+        if (activated)
+        {
+            val=4;
+            
+        }
+        else
+        {
+            val=44;
+            
+            
+        }
+    }
     NSString * post = [[NSString alloc] initWithFormat:@"&relais=%d", val];
     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
