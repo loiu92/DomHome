@@ -17,5 +17,7 @@
 - (IBAction)lampePlafond:(UISwitch *)sender;
 - (IBAction)lampeChevet2:(UISwitch *)sender;
 - (IBAction)TV2:(UISwitch *)sender;
+@property (strong, nonatomic) IBOutlet UILabel *aLabel;
+
 
 @end

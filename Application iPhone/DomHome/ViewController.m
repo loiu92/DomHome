@@ -13,6 +13,7 @@
 @end
 
 @implementation ViewController
+@synthesize aLabel;
 
 - (void)viewDidLoad
 {
@@ -91,7 +92,7 @@
     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://pi.loiu92.com/index.py"]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.40.2.64/index.py"]]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -100,7 +101,6 @@
     
     if (conn) NSLog(@"Connection Successful");
         
-    
     
 
     
