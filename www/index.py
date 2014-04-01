@@ -8,9 +8,16 @@ import cgitb
 import os
 
 cgitb.enable()
-
+bus = smbus.SMBus(1) #remplacer le 1 par 0 si vieux raspberry pi
+address = 0x12 #adresse i2c
 form = cgi.FieldStorage()
-
+bus.write_byte(address, 100)
+mon_fichier = open("etatrelais.txt", "w")
+mon_fichier.write(str(bus.read_byte(address)))
+mon_fichier.close()
+mon_fichier = open("etatrelais.txt", "r")
+etatrelais = str(mon_fichier.readlines())
+#etatrelais = str(etatrelais)
 print "Content-type: text/html\n\n"
 
 
@@ -121,6 +128,35 @@ print """
 <button type="submit" name="relais" class="btn btn-sm btn-default" value="100">Etat Total</button>
       </div>
     </div>
+<div align="center">
+<TABLE BORDER="1"> 
+  <CAPTION>Etat des relais</CAPTION> 
+  <TR> 
+ <TH> Relais 1 </TH> 
+ <TH> Relais 2 </TH> 
+ <TH> Relais 3 </TH> 
+ <TH> Relais 4 </TH> 
+  </TR> 
+  <TR> 
+ <TH>
+"""
+print etatrelais[4]
+print """
+ </TH> 
+ <TD>
+"""
+print etatrelais[3]
+print """
+  </TD> 
+ <TD>
+"""
+print etatrelais[2]  
+print """
+</TD> 
+ <TD>  </TD> 
+  </TR> 
+</TABLE> 
+</div>
 
 
     <!-- Bootstrap core JavaScript
@@ -134,10 +170,6 @@ print """
 </body></html>
 
 """
-
-
-bus = smbus.SMBus(1) #remplacer le 1 par 0 si vieux raspberry pi
-address = 0x12 #adresse i2c
 
 if os.environ['REQUEST_METHOD'] == 'POST':
 #maintenance	mon_fichier = open("fichier.txt", "w")
@@ -155,25 +187,25 @@ mon_fichier = open("etatrelais.txt", "w")
 mon_fichier.write(str(bus.read_byte(address)))
 mon_fichier.close()
 
-mon_fichier = open("etatrelais.txt", "r")
-etatrelais = mon_fichier.readlines()
-print etatrelais
+#mon_fichier = open("etatrelais.txt", "r")
+#etatrelais = mon_fichier.readlines()
+#print etatrelais
 
-etat = str(bus.read_byte(address))
-print "relai 1:"
-print etat[0]
-print "relai 2:"
-print etat[1]
-print "relai 3:"
-print etat[2]
+#etat = str(bus.read_byte(address))
+#print "relai 1:"
+#print etat[0]
+#print "relai 2:"
+#print etat[1]
+#print "relai 3:"
+#print etat[2]
 
 
 
-print "<p></p>"
-print "------------------------------<p></p>"
-print "-", "Relai 1", "|", etat[0], "|<p></p>"
-print "----+---+----<p></p>"
-print "-", "Relai 2", "|", etat[1], "|<p></p>"
-print "----+---+----<p></p>"
-print "-", "Relai 3", "|", etat[2], "|<p></p>"
-print "------------------------------<p></p>"
+#print "<p></p>"
+#print "------------------------------<p></p>"
+#print "-", "Relai 1", "|", etat[0], "|<p></p>"
+#print "----+---+----<p></p>"
+#print "-", "Relai 2", "|", etat[1], "|<p></p>"
+#print "----+---+----<p></p>"
+#print "-", "Relai 3", "|", etat[2], "|<p></p>"
+#print "------------------------------<p></p>"
