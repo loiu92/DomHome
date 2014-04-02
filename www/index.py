@@ -12,11 +12,11 @@ bus = smbus.SMBus(1) #remplacer le 1 par 0 si vieux raspberry pi
 address = 0x12 #adresse i2c
 form = cgi.FieldStorage()
 bus.write_byte(address, 100)
-mon_fichier = open("etatrelais.txt", "w")
-mon_fichier.write(str(bus.read_byte(address)))
-mon_fichier.close()
-mon_fichier = open("etatrelais.txt", "r")
-etatrelais = str(mon_fichier.readlines())
+#mon_fichier = open("etatrelais.txt", "w")
+#mon_fichier.write(str(bus.read_byte(address)))
+#mon_fichier.close()
+#mon_fichier = open("etatrelais.txt", "r")
+#etatrelais = str(mon_fichier.readlines())
 #etatrelais = str(etatrelais)
 print "Content-type: text/html\n\n"
 
@@ -128,6 +128,32 @@ print """
 <button type="submit" name="relais" class="btn btn-sm btn-default" value="100">Etat Total</button>
       </div>
     </div>
+"""
+if os.environ['REQUEST_METHOD'] == 'POST':
+#maintenance    mon_fichier = open("fichier.txt", "w")
+#maintenance        mon_fichier.write(str(form))
+#maintenance        mon_fichier.close()
+
+        bus.write_byte(address,int(form["relais"].value))
+        print "<h1>Etat des Relais :</h1>"
+        print "etat relais ="+str(bus.read_byte(address))
+
+#Ecriture Etat relais fichier et page
+
+bus.write_byte(address, 100)
+mon_fichier = open("etatrelais.txt", "w")
+mon_fichier.write(str(bus.read_byte(address)))
+mon_fichier.close()
+mon_fichier = open("etatrelais.txt","r")
+etatrelais = str(mon_fichier.readlines())
+
+if len(etatrelais)!=7:
+	etatrelais=etatrelais[:2] + '0' + etatrelais[2:]
+if len(etatrelais)!=7:
+	etatrelais=etatrelais[:2] + '0' + etatrelais[2:]
+	
+mon_fichier.close()
+print """
 <div align="center">
 <TABLE BORDER="1"> 
   <CAPTION>Etat des relais</CAPTION> 
@@ -140,6 +166,7 @@ print """
   <TR> 
  <TH>
 """
+
 print etatrelais[4]
 print """
  </TH> 
@@ -170,22 +197,22 @@ print """
 </body></html>
 
 """
-
-if os.environ['REQUEST_METHOD'] == 'POST':
+#print etatrelais
+#if os.environ['REQUEST_METHOD'] == 'POST':
 #maintenance	mon_fichier = open("fichier.txt", "w")
 #maintenance        mon_fichier.write(str(form))
 #maintenance        mon_fichier.close()
 
-	bus.write_byte(address,int(form["relais"].value))
-	print "<h1>Etat des Relais :</h1>"
-	print "etat relais ="+str(bus.read_byte(address))
+#	bus.write_byte(address,int(form["relais"].value))
+#	print "<h1>Etat des Relais :</h1>"
+#	print "etat relais ="+str(bus.read_byte(address))
 
 #Ecriture Etat relais fichier et page
 
-bus.write_byte(address, 100)
-mon_fichier = open("etatrelais.txt", "w")
-mon_fichier.write(str(bus.read_byte(address)))
-mon_fichier.close()
+#bus.write_byte(address, 100)
+#mon_fichier = open("etatrelais.txt", "w")
+#mon_fichier.write(str(bus.read_byte(address)))
+#mon_fichier.close()
 
 #mon_fichier = open("etatrelais.txt", "r")
 #etatrelais = mon_fichier.readlines()
