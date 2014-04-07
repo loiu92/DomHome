@@ -83,17 +83,20 @@
         }
         else
         {
-            val=44;
-            
-            
+            val=44;            
         }
     }
     NSString * post = [[NSString alloc] initWithFormat:@"&relais=%d", val];
     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-    NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]]; //J'ai remplacé par %lu car c'était le format adéquat mais tu peux le remettre en %d sinon
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.40.2.64/index.py"]]];
-    [request setHTTPMethod:@"POST"];
+	//Code pour récupérer l'IP
+	/*NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Server" ofType:@"plist"]];
+	NSString *ip = [dict objectForKey:@"LastIP"];
+	NSLog(@"%@", ip);*/
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.40.2.15/index.py"]]]; //[NSURL URLWithString:ip]
+    
+	[request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
