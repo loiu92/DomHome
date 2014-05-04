@@ -9,7 +9,6 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
 @end
 
 @implementation ViewController
@@ -38,12 +37,10 @@
         if (activated)
         {
             val=1;
-            
         }
         else
         {
             val=11;
-            
         }
     }
     else if ([object isEqualToString:@"LampeHalo"])
@@ -51,27 +48,21 @@
         if (activated)
         {
             val=2;
-            
         }
         else
         {
             val=22;
-           
-     
-    }
+		}
     }
     else if ([object isEqualToString:@"TV"])
     {
         if (activated)
         {
             val=3;
-            
         }
         else
         {
             val=33;
-            
-            
         }
     }
     else if ([object isEqualToString:@"LampeChevet"])
@@ -79,33 +70,32 @@
         if (activated)
         {
             val=4;
-            
         }
         else
         {
             val=44;            
         }
     }
+	
     NSString * post = [[NSString alloc] initWithFormat:@"&relais=%d", val];
     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]]; //J'ai remplacé par %lu car c'était le format adéquat mais tu peux le remettre en %d sinon
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-	//Code pour récupérer l'IP
-	/*NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Server" ofType:@"plist"]];
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Server" ofType:@"plist"]];
 	NSString *ip = [dict objectForKey:@"LastIP"];
-	NSLog(@"%@", ip);*/
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.40.2.15/index.py"]]]; //[NSURL URLWithString:ip]
-    
+	ip = [NSString stringWithFormat:@"http://%@/index.py", ip];
+	NSLog(@"IP :%@", ip);
+	
+	[request setURL:[NSURL URLWithString:ip]];
 	[request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
-    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    if (conn) NSLog(@"Connection Successful");
-        
-    
-
+    if (conn)
+		NSLog(@"Succès ! Le reste se déroule sur le serveur");
     
 }
 
