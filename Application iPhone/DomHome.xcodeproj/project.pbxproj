@@ -63,6 +63,7 @@
 		39648081185A7FB60091D35E /* DomHomeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DomHomeTests.m; sourceTree = "<group>"; };
 		3989F610185A835100C011E7 /* info-icone-6635-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-icone-6635-32.png"; sourceTree = "<group>"; };
 		3989F613185A835900C011E7 /* accueil-icone-9107-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accueil-icone-9107-32.png"; sourceTree = "<group>"; };
+		39F16744192D37E2005A712D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		75FE389018F2FEF700255ABB /* Server.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Server.plist; sourceTree = "<group>"; };
 		75FE389218F2FF2A00255ABB /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		75FE389318F2FF2A00255ABB /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
@@ -224,6 +225,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
 						};
 					};
 					39648073185A7FB60091D35E = {
@@ -312,6 +316,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3964805D185A7FB50091D35E /* en */,
+				39F16744192D37E2005A712D /* Base */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
