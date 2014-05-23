@@ -20,11 +20,17 @@ import sys
 
 cgitb.enable()
 
+
+
+
+
+
+
 print "Content-type: text/html\n\n"
 
 print """
 
-<html><head><title>Hello World from DomHome\n</title></head><body>Eteindre Relais 1 </body></html>
+<html><head><title>Hello World from DomHome\n</title></head><body>Eteindre Relais 2 </body></html>
 
 """
 
@@ -34,7 +40,7 @@ bus = smbus.SMBus(1)
 
 address = 0x12
 
-bus.write_byte(address,int(11))
+bus.write_byte(address,int(22))
 
 
 
