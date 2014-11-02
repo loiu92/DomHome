@@ -23,14 +23,12 @@ print """
     <meta name="description" content="Site Web de Domhome">
     <meta name="author" content="Loiu92">
     <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
-
     <title>Theme Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href=files/bootstrap.min.css rel="stylesheet">
     <!-- Bootstrap theme -->
     <link href=files/bootstrap-theme.min.css rel="stylesheet">
-    <link href=files/table.css rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href=files/theme.css rel="stylesheet">
 
@@ -56,7 +54,7 @@ print """
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.py">DomHome</a>
+          <a class="navbar-brand" >DomHome</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -116,7 +114,7 @@ print """
               </div>
             </div>
           </div>
-<button type="submit" name="relais" class="btn btn-sm btn-default" value="100">Etat Total</button>
+<button type="submit" name="relais" class="btn btn-sm btn-default" value="100">Actualiser Etat des relais</button>
       </div>
     </div>
 """
@@ -131,14 +129,16 @@ mon_fichier = open("etatrelais.txt","r")
 etatrelais = str(mon_fichier.readlines())
 
 if len(etatrelais)!=8:
-	etatrelais=etatrelais[:2] + '0' + etatrelais[2:]
+        etatrelais=etatrelais[:2] + '0' + etatrelais[2:]
 if len(etatrelais)!=8:
 	etatrelais=etatrelais[:2] + '0' + etatrelais[2:]
+if len(etatrelais)!=8:
+        etatrelais=etatrelais[:2] + '0' + etatrelais[2:]
 	
 mon_fichier.close()
 print """
-<table class="CSSTableGenerator" > 
-  <tr> 
+<table class="table table-bordered"> 
+ <tr> 
  <td> Relais 1 </td> 
  <td> Relais 2 </td> 
  <td> Relais 3 </td> 
@@ -147,17 +147,17 @@ print """
  <td>
 """
 
-print etatrelais[4]
+print etatrelais[5]
 print """
  </td> 
  <td>
 """
-print etatrelais[3]
+print etatrelais[4]
 print """
   </td> 
  <td>
 """
-print etatrelais[2]  
+print etatrelais[3]  
 print """
 </td> 
 </tr> 
@@ -176,3 +176,5 @@ print """
 </body></html>
 
 """
+
+
